@@ -40,6 +40,11 @@ namespace cyber_security_chat_bot
             //calling the ask_user method of the welcome_and_username class
             welcome_and_collect.ask_user();
 
+            //creating an instance for the prompt_and_search class
+            //with an object name bot
+            prompt_and_search bot = new prompt_and_search();
+            bot.aibot(Bluechatbot: "Bluechatbot");
+
 
 
 
