@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace cyber_security_chat_bot
 {
@@ -15,51 +16,46 @@ namespace cyber_security_chat_bot
         {
             "Hello there!",
             "I'm just a chatbot, but I'm doing great!",
-            "To enhance password security, consider using a password manager to generate and store complex passwords, enable two-factor authentication for added protection, and regularly update your passwords to prevent unauthorized access." +
+            "To enhance password security, consider using a password manager to generate and store complex passwords, enable two-factor authentication for added protection, and regularly update your passwords to prevent unauthorized access."
 
 
         };
-
-        public void aibot(string Bluechatbot)
+        public void aibot(string username)
         {
-            Console.ForegroundColor = ConsoleColor.Magenta;
-            Console.WriteLine($"{Bluechatbot}:");
-            Console.ForegroundColor = ConsoleColor.DarkCyan;
-            Console.WriteLine("How can I assist you today? (Type 'exit' to quit)");
-            Console.ResetColor();
+            Console.WriteLine("Hello " + username + "! How can I assist you today? (type 'quit' to exit) ");
+
             while (true)
-            {
-                Console.ForegroundColor = ConsoleColor.DarkCyan;
-                Console.Write("YOU: ");
+            { Console.Write(username + ": ");
                 string userInput = Console.ReadLine();
-                Console.ResetColor();
-                if (userInput.ToLower() == "exit")
+
+                if (userInput == "quit")
                 {
+                    Console.WriteLine("Goodbye " + username + "! Have a great day!");
                     break;
                 }
-                bool foundAnswer = false;
+
+                bool found = false;
+
                 for (int i = 0; i < questions.Count; i++)
                 {
-                    if (userInput.ToLower().Contains(questions[i].ToLower()))
+                    if (userInput.Contains(questions[i]))
+
                     {
-                        Console.ForegroundColor = ConsoleColor.Magenta;
-                        Console.WriteLine($"{Bluechatbot}:");
-                        Console.ForegroundColor = ConsoleColor.DarkCyan;
-                        Console.WriteLine(answers[i]);
-                        Console.ResetColor();
-                        foundAnswer = true;
+                        Console.WriteLine("Chatbot: " + answers[i]);
+                        found = true;
                         break;
                     }
+                if (!found)
+                    {
+                        Console.WriteLine("Chatbot: I'm sorry, I don't have an answer for that. Can you please rephrase your question or ask something else?");
+                    }
+
+
                 }
-                if (!foundAnswer)
-                {
-                    Console.ForegroundColor = ConsoleColor.Magenta;
-                    Console.WriteLine($"{Bluechatbot}:");
-                    Console.ForegroundColor = ConsoleColor.DarkCyan;
-                    Console.WriteLine("I'm sorry, I don't have an answer for that. Please try asking something else.");
-                    Console.ResetColor();
-                }
+
             }
+
+
         }
     }
 }
