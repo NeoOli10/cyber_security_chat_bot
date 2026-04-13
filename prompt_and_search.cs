@@ -1,36 +1,42 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace cyber_security_chat_bot
+
+
+namespace cyber_security_chatbott
 {
     public class prompt_and_search
     {
-
         private List<string> questions = new List<string>()
         {
             "Hi",
             "How are you",
-            "password security",
+            "password security"
         };
+
         private List<string> answers = new List<string>()
         {
             "Hello there!",
             "I'm just a chatbot, but I'm doing great!",
-            "To enhance password security, consider using a password manager to generate and store complex passwords, enable two-factor authentication for added protection, and regularly update your passwords to prevent unauthorized access."
-
-
+            "Use strong passwords, enable 2FA, and never reuse passwords."
         };
+
         public void aibot(string username)
         {
-            Console.WriteLine("Hello " + username + "! How can I assist you today? (type 'quit' to exit) ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine($"\nHello {username}! How can I assist you? (type 'quit' to exit)");
 
             while (true)
-            { Console.Write(username + ": ");
+            {
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.Write($"{username}: ");
+
                 string userInput = Console.ReadLine();
 
-                if (userInput == "quit")
+                if (userInput.ToLower() == "quit")
                 {
-                    Console.WriteLine("Goodbye " + username + "! Have a great day!");
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine($"Goodbye {username}! Stay safe online 👋");
                     break;
                 }
 
@@ -38,24 +44,24 @@ namespace cyber_security_chat_bot
 
                 for (int i = 0; i < questions.Count; i++)
                 {
-                    if (userInput.Contains(questions[i]))
-
+                    if (userInput.ToLower().Contains(questions[i].ToLower()))
                     {
-                        Console.WriteLine("Chatbot: " + answers[i]);
+                        Console.ForegroundColor = ConsoleColor.Cyan;
+                        Console.WriteLine("ChatBot: " + answers[i]);
                         found = true;
                         break;
                     }
-                if (!found)
-                    {
-                        Console.WriteLine("Chatbot: I'm sorry, I don't have an answer for that. Can you please rephrase your question or ask something else?");
-                    }
-
-
                 }
 
+                // ✅ FIX: moved OUTSIDE loop
+                if (!found)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("ChatBot: I don't understand. Try something else.");
+                }
             }
 
-
+            Console.ResetColor();
         }
     }
 }
