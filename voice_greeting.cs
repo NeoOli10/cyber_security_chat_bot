@@ -23,7 +23,7 @@ namespace cyber_security_chat_bot
 
             //then rename the path to the voice greeting recording
 
-            string fullpath = path.Replace(@"bin\Debug\", "voicegreeting.wav");
+            string fullpath = path.Replace(@"bin\Debug\", "hatspp.wav");
 
             //load the audio file , then play the audio file after instance
             SoundPlayer voice_play = new SoundPlayer(fullpath);
